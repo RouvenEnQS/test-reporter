@@ -101,7 +101,9 @@ export class JavaJunitParser implements TestParser {
         const result = this.getTestCaseResult(tc)
         const time = parseFloat(tc.$.time) * 1000
         const error = this.getTestCaseError(tc)
-        return new TestCaseResult(name, result, time, error)
+        const description = tc.$.description?.trim() || undefined
+        const systemOut = tc['system-out']?.[0]?.trim() || undefined
+        return new TestCaseResult(name, result, time, error, description, systemOut)
       })
       return new TestGroupResult(grp.name, tests)
     })

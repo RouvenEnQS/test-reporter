@@ -18,5 +18,6 @@
 ❌ testCase6
 	ArithmeticError: Division by zero.
 ✅ testCase7
+  > Data written to standard out.
 ✅ testCase8
 ```

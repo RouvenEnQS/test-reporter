@@ -10,21 +10,27 @@ TestRunResult {
           "name": "",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testCase1",
               "result": "success",
+              "systemOut": undefined,
               "time": 2113.871,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testCase2",
               "result": "success",
+              "systemOut": undefined,
               "time": 1051,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testCase3",
               "result": "success",
+              "systemOut": undefined,
               "time": 3441,
             },
           ],
@@ -39,21 +45,27 @@ TestRunResult {
           "name": "",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testCase4",
               "result": "success",
+              "systemOut": undefined,
               "time": 2244,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testCase5",
               "result": "success",
+              "systemOut": undefined,
               "time": 781,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testCase6",
               "result": "success",
+              "systemOut": undefined,
               "time": 1331,
             },
           ],
@@ -68,18 +80,23 @@ TestRunResult {
           "name": "",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testCase7",
               "result": "success",
+              "systemOut": undefined,
               "time": 2508,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testCase8",
               "result": "success",
+              "systemOut": undefined,
               "time": 1230.8159999999998,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "",
                 "line": undefined,
@@ -88,6 +105,7 @@ TestRunResult {
               },
               "name": "testCase9",
               "result": "failed",
+              "systemOut": undefined,
               "time": 982,
             },
           ],
@@ -111,21 +129,27 @@ TestRunResult {
           "name": "",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testGoodDoc",
               "result": "success",
+              "systemOut": undefined,
               "time": 5.093,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testComments",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.921,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testTODOs",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.6880000000000001,
             },
           ],
@@ -140,9 +164,11 @@ TestRunResult {
           "name": "",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testDeprecations",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.9740000000000001,
             },
           ],
@@ -157,27 +183,35 @@ TestRunResult {
           "name": "",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testGood",
               "result": "success",
+              "systemOut": undefined,
               "time": 2.6470000000000002,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testDoWhile",
               "result": "success",
+              "systemOut": undefined,
               "time": 1.0219999999999998,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testAnonymousFunction",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.8,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testException",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.888,
             },
           ],
@@ -192,51 +226,67 @@ TestRunResult {
           "name": "",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testTabIndentation",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.857,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testSpaceIndentation",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.929,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testSpaceIndentationArray",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.975,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testGoodSpaceIndentationArray",
               "result": "success",
+              "systemOut": undefined,
               "time": 1.212,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testGoodIndentationNewLine",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.859,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testGoodIndentationSpaces",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.78,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testBadSpaces",
               "result": "success",
+              "systemOut": undefined,
               "time": 1.1199999999999999,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testBadSpaceAfterControl",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.9219999999999999,
             },
           ],
@@ -251,9 +301,11 @@ TestRunResult {
           "name": "",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testMetrics",
               "result": "success",
+              "systemOut": undefined,
               "time": 4.146999999999999,
             },
           ],
@@ -268,15 +320,19 @@ TestRunResult {
           "name": "",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testNaming",
               "result": "success",
+              "systemOut": undefined,
               "time": 1.426,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testFunctionNaming",
               "result": "success",
+              "systemOut": undefined,
               "time": 1.271,
             },
           ],
@@ -291,9 +347,11 @@ TestRunResult {
           "name": "",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testTextAfterClosingTag",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.9940000000000001,
             },
           ],
@@ -308,6 +366,7 @@ TestRunResult {
           "name": "",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "OtherTest::testOther
 We expect 20 warnings
@@ -320,9 +379,11 @@ Failed asserting that 19 matches expected 20.
               },
               "name": "testOther",
               "result": "failed",
+              "systemOut": undefined,
               "time": 5.2509999999999994,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "OtherTest::testException
 We expect 1 error
@@ -335,18 +396,23 @@ Failed asserting that 0 matches expected 1.
               },
               "name": "testException",
               "result": "failed",
+              "systemOut": undefined,
               "time": 0.751,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testEmpty",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.42700000000000005,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testSwitchCaseNeedBreak",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.901,
             },
           ],
@@ -361,15 +427,19 @@ Failed asserting that 0 matches expected 1.
           "name": "",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testTextAfterClosingTag",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.641,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testClosingTagNotNeeded",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.631,
             },
           ],
@@ -384,9 +454,11 @@ Failed asserting that 0 matches expected 1.
           "name": "",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testProhibited",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.9380000000000001,
             },
           ],
@@ -401,9 +473,11 @@ Failed asserting that 0 matches expected 1.
           "name": "",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testStrictCompare",
               "result": "success",
+              "systemOut": undefined,
               "time": 1.578,
             },
           ],
@@ -418,15 +492,19 @@ Failed asserting that 0 matches expected 1.
           "name": "",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testGoodUnused",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.94,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testBadUnused",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.895,
             },
           ],
@@ -450,15 +528,19 @@ TestRunResult {
           "name": "PHPUnit.Event.CollectingDispatcherTest",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testHasNoCollectedEventsWhenFlushedImmediatelyAfterCreation",
               "result": "success",
+              "systemOut": undefined,
               "time": 1.441,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testCollectsDispatchedEventsUntilFlushed",
               "result": "success",
+              "systemOut": undefined,
               "time": 2.815,
             },
           ],
@@ -473,27 +555,35 @@ TestRunResult {
           "name": "PHPUnit.Event.DeferringDispatcherTest",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testCollectsEventsUntilFlush",
               "result": "success",
+              "systemOut": undefined,
               "time": 1.6720000000000002,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testFlushesCollectedEvents",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.661,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testSubscriberCanBeRegistered",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.33399999999999996,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testTracerCanBeRegistered",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.262,
             },
           ],
@@ -508,27 +598,35 @@ TestRunResult {
           "name": "PHPUnit.Event.DirectDispatcherTest",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testDispatchesEventToKnownSubscribers",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.17,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testDispatchesEventToTracers",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.248,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testRegisterRejectsUnknownSubscriber",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.257,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "testDispatchRejectsUnknownEventType",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.11900000000000001,
             },
           ],
@@ -543,6 +641,7 @@ TestRunResult {
           "name": "",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "targeting-traits-with-coversclass-attribute-is-deprecated.phptFailed asserting that string matches format description.
 --- Expected
@@ -577,9 +676,11 @@ TestRunResult {
               },
               "name": "targeting-traits-with-coversclass-attribute-is-deprecated.phpt",
               "result": "failed",
+              "systemOut": undefined,
               "time": 68.151,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "targeting-traits-with-usesclass-attribute-is-deprecated.phptFailed asserting that string matches format description.
 --- Expected
@@ -614,6 +715,7 @@ TestRunResult {
               },
               "name": "targeting-traits-with-usesclass-attribute-is-deprecated.phpt",
               "result": "failed",
+              "systemOut": undefined,
               "time": 64.268,
             },
           ],

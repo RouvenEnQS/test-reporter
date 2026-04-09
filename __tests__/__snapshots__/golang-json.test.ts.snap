@@ -10,12 +10,15 @@ TestRunResult {
           "name": null,
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "TestPassing",
               "result": "success",
+              "systemOut": undefined,
               "time": 60,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "calculator_test.go:19: expected 1+1 = 3, got 2
 ",
@@ -24,9 +27,11 @@ TestRunResult {
               },
               "name": "TestFailing",
               "result": "failed",
+              "systemOut": undefined,
               "time": 890,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "calculator_test.go:76: caught panic: runtime error: integer divide by zero
 ",
@@ -35,9 +40,11 @@ TestRunResult {
               },
               "name": "TestPanicInsideFunction",
               "result": "failed",
+              "systemOut": undefined,
               "time": 0,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "calculator_test.go:76: caught panic: bad stuff
 ",
@@ -46,9 +53,11 @@ TestRunResult {
               },
               "name": "TestPanicInsideTest",
               "result": "failed",
+              "systemOut": undefined,
               "time": 0,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "calculator_test.go:45: skipping test
 ",
@@ -57,15 +66,18 @@ TestRunResult {
               },
               "name": "TestSkipped",
               "result": "skipped",
+              "systemOut": undefined,
               "time": 940,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "",
                 "message": "",
               },
               "name": "TestCases",
               "result": "failed",
+              "systemOut": undefined,
               "time": 2250,
             },
           ],
@@ -74,18 +86,23 @@ TestRunResult {
           "name": "TestCases",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "1_+_2_=_3",
               "result": "success",
+              "systemOut": undefined,
               "time": 400,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "4_+_7_=_11",
               "result": "success",
+              "systemOut": undefined,
               "time": 460,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "calculator_test.go:67: expected 2 + 3 = 4, got 5
 ",
@@ -94,9 +111,11 @@ TestRunResult {
               },
               "name": "2_+_3_=_4",
               "result": "failed",
+              "systemOut": undefined,
               "time": 90,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "calculator_test.go:67: expected 1 / 2 = 1, got 0
 ",
@@ -105,18 +124,23 @@ TestRunResult {
               },
               "name": "1_/_2_=_1",
               "result": "failed",
+              "systemOut": undefined,
               "time": 920,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "9_/_3_=_3",
               "result": "success",
+              "systemOut": undefined,
               "time": 340,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "14_/_7_=_2",
               "result": "success",
+              "systemOut": undefined,
               "time": 40,
             },
           ],

@@ -10,18 +10,23 @@ TestRunResult {
           "name": "AcmeLibTests.AcmeLibTests",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "test_always_pass",
               "result": "success",
+              "systemOut": undefined,
               "time": 36.386333,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "test_always_skip",
               "result": "success",
+              "systemOut": undefined,
               "time": 92.039167,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": undefined,
                 "line": undefined,
@@ -30,6 +35,7 @@ TestRunResult {
               },
               "name": "test_always_fail",
               "result": "failed",
+              "systemOut": undefined,
               "time": 92.05175,
             },
           ],

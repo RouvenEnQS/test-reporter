@@ -10,12 +10,15 @@ TestRunResult {
           "name": "CalculatorTests",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "Is_Even_Number(2)",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.622,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "   at DotnetTests.XUnitTests.CalculatorTests.Is_Even_Number(Int32 i) in C:\\Users\\Michal\\Workspace\\dorny\\test-reporter\\reports\\dotnet\\DotnetTests.NUnitV3Tests\\CalculatorTests.cs:line 61
 ",
@@ -27,9 +30,11 @@ TestRunResult {
               },
               "name": "Is_Even_Number(3)",
               "result": "failed",
+              "systemOut": undefined,
               "time": 1.098,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "   at DotnetTests.Unit.Calculator.Div(Int32 a, Int32 b) in C:\\Users\\Michal\\Workspace\\dorny\\test-reporter\\reports\\dotnet\\DotnetTests.Unit\\Calculator.cs:line 9
    at DotnetTests.XUnitTests.CalculatorTests.Exception_In_TargetTest() in C:\\Users\\Michal\\Workspace\\dorny\\test-reporter\\reports\\dotnet\\DotnetTests.NUnitV3Tests\\CalculatorTests.cs:line 33",
@@ -39,9 +44,11 @@ TestRunResult {
               },
               "name": "Exception_In_TargetTest",
               "result": "failed",
+              "systemOut": undefined,
               "time": 22.805,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "   at DotnetTests.XUnitTests.CalculatorTests.Exception_In_Test() in C:\\Users\\Michal\\Workspace\\dorny\\test-reporter\\reports\\dotnet\\DotnetTests.NUnitV3Tests\\CalculatorTests.cs:line 39",
                 "line": undefined,
@@ -50,9 +57,11 @@ TestRunResult {
               },
               "name": "Exception_In_Test",
               "result": "failed",
+              "systemOut": undefined,
               "time": 0.528,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "   at DotnetTests.XUnitTests.CalculatorTests.Failing_Test() in C:\\Users\\Michal\\Workspace\\dorny\\test-reporter\\reports\\dotnet\\DotnetTests.NUnitV3Tests\\CalculatorTests.cs:line 27
 ",
@@ -64,27 +73,35 @@ TestRunResult {
               },
               "name": "Failing_Test",
               "result": "failed",
+              "systemOut": undefined,
               "time": 28.162,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "Passing_Test",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.23800000000000002,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "Passing_Test_With_Description",
               "result": "success",
+              "systemOut": undefined,
               "time": 0.135,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "Skipped_Test",
               "result": "skipped",
+              "systemOut": undefined,
               "time": 0.398,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "",
                 "line": undefined,
@@ -93,6 +110,7 @@ TestRunResult {
               },
               "name": "Timeout_Test",
               "result": "failed",
+              "systemOut": undefined,
               "time": 14.949,
             },
           ],

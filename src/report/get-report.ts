@@ -284,6 +284,9 @@ function getTestsReport(ts: TestSuiteResult, runIndex: number, suiteIndex: numbe
       }
       const result = getResultIcon(tc.result)
       sections.push(`${space}${result} ${tc.name}`)
+      if (tc.description) {
+        sections.push(`${space}  ${tc.description}`)
+      }
       if (tc.error) {
         const lines = (tc.error.message ?? getFirstNonEmptyLine(tc.error.details)?.trim())
           ?.split(/\r?\n/g)
@@ -291,6 +294,9 @@ function getTestsReport(ts: TestSuiteResult, runIndex: number, suiteIndex: numbe
         if (lines) {
           sections.push(...lines)
         }
+      } else if (tc.systemOut) {
+        const lines = tc.systemOut.split(/\r?\n/g).map(l => `${space}  > ${l}`)
+        sections.push(...lines)
       }
     }
   }

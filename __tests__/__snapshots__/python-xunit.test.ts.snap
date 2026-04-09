@@ -10,36 +10,47 @@ TestRunResult {
           "name": "tests.test_lib",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "test_always_pass",
               "result": "success",
+              "systemOut": undefined,
               "time": 2,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "test_with_subtests",
               "result": "success",
+              "systemOut": undefined,
               "time": 5,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "test_parameterized[param1]",
               "result": "success",
+              "systemOut": undefined,
               "time": 0,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "test_parameterized[param2]",
               "result": "success",
+              "systemOut": undefined,
               "time": 0,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "test_always_skip",
               "result": "skipped",
+              "systemOut": undefined,
               "time": 0,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "def test_always_fail():
         > assert False
@@ -53,15 +64,19 @@ TestRunResult {
               },
               "name": "test_always_fail",
               "result": "failed",
+              "systemOut": undefined,
               "time": 0,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "test_expected_failure",
               "result": "skipped",
+              "systemOut": undefined,
               "time": 0,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "def test_error():
         > raise Exception("error")
@@ -75,12 +90,15 @@ TestRunResult {
               },
               "name": "test_error",
               "result": "failed",
+              "systemOut": undefined,
               "time": 0,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "test_with_record_property",
               "result": "success",
+              "systemOut": undefined,
               "time": 0,
             },
           ],
@@ -89,9 +107,11 @@ TestRunResult {
           "name": "custom_classname",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "test_with_record_xml_attribute",
               "result": "success",
+              "systemOut": undefined,
               "time": 0,
             },
           ],
@@ -115,30 +135,39 @@ TestRunResult {
           "name": "TestAcme",
           "tests": [
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "test_always_pass",
               "result": "success",
+              "systemOut": undefined,
               "time": 0,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "test_parameterized_0_param1",
               "result": "success",
+              "systemOut": undefined,
               "time": 1,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "test_parameterized_1_param2",
               "result": "success",
+              "systemOut": undefined,
               "time": 0,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "test_with_subtests",
               "result": "success",
+              "systemOut": undefined,
               "time": 0,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "Traceback (most recent call last):
   File "/Users/foo/Projects/python-test/tests/test_lib.py", line 24, in test_always_fail
@@ -151,9 +180,11 @@ AssertionError: failed
               },
               "name": "test_always_fail",
               "result": "failed",
+              "systemOut": undefined,
               "time": 0,
             },
             TestCaseResult {
+              "description": undefined,
               "error": {
                 "details": "Traceback (most recent call last):
   File "/Users/foo/Projects/python-test/tests/test_lib.py", line 31, in test_error
@@ -166,18 +197,23 @@ Exception: error
               },
               "name": "test_error",
               "result": "failed",
+              "systemOut": undefined,
               "time": 0,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "test_always_skip",
               "result": "skipped",
+              "systemOut": undefined,
               "time": 0,
             },
             TestCaseResult {
+              "description": undefined,
               "error": undefined,
               "name": "test_expected_failure",
               "result": "skipped",
+              "systemOut": undefined,
               "time": 0,
             },
           ],
