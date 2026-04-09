@@ -122,7 +122,9 @@ export class TestCaseResult {
     readonly name: string,
     readonly result: TestExecutionResult,
     readonly time: number,
-    readonly error?: TestCaseError
+    readonly error?: TestCaseError,
+    readonly description?: string,
+    readonly systemOut?: string
   ) {}
 }
 

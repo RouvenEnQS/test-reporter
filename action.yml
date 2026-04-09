@@ -79,7 +79,7 @@ inputs:
     description: |
       Allows you to generate reports for Actions Summary
       https://github.com/orgs/github/teams/engineering/discussions/871
-    default: 'true'
+    default: 'false'
     required: false
   badge-title:
     description: Customize badge title

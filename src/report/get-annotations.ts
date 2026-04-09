@@ -24,6 +24,14 @@ interface TestError {
   details: string
 }
 
+interface TestNotice {
+  suiteName: string
+  testName: string
+  path: string
+  description?: string
+  systemOut: string
+}
+
 export function getAnnotations(results: TestRunResult[], maxCount: number): Annotation[] {
   if (maxCount === 0) {
     return []
@@ -32,34 +40,42 @@ export function getAnnotations(results: TestRunResult[], maxCount: number): Anno
   // Collect errors from TestRunResults
   // Merge duplicates if there are more test results files processed
   const errors: TestError[] = []
+  const notices: TestNotice[] = []
   const mergeDup = results.length > 1
   for (const tr of results) {
     for (const ts of tr.suites) {
       for (const tg of ts.groups) {
         for (const tc of tg.tests) {
           const err = tc.error
-          if (err === undefined) {
-            continue
-          }
-          const path = err.path ?? tr.path
-          const line = err.line ?? 0
-          if (mergeDup) {
-            const dup = errors.find(e => path === e.path && line === e.line && err.details === e.details)
-            if (dup !== undefined) {
-              dup.testRunPaths.push(tr.path)
-              continue
+          if (err !== undefined) {
+            const path = err.path ?? tr.path
+            const line = err.line ?? 0
+            if (mergeDup) {
+              const dup = errors.find(e => path === e.path && line === e.line && err.details === e.details)
+              if (dup !== undefined) {
+                dup.testRunPaths.push(tr.path)
+                continue
+              }
             }
-          }
 
-          errors.push({
-            testRunPaths: [tr.path],
-            suiteName: ts.name,
-            testName: tg.name ? `${tg.name} ► ${tc.name}` : tc.name,
-            details: err.details,
-            message: err.message ?? getFirstNonEmptyLine(err.details) ?? 'Test failed',
-            path,
-            line
-          })
+            errors.push({
+              testRunPaths: [tr.path],
+              suiteName: ts.name,
+              testName: tg.name ? `${tg.name} ► ${tc.name}` : tc.name,
+              details: err.details,
+              message: err.message ?? getFirstNonEmptyLine(err.details) ?? 'Test failed',
+              path,
+              line
+            })
+          } else if (tc.result === 'success' && tc.systemOut) {
+            notices.push({
+              suiteName: ts.name,
+              testName: tg.name ? `${tg.name} ► ${tc.name}` : tc.name,
+              path: tr.path,
+              description: tc.description,
+              systemOut: tc.systemOut
+            })
+          }
         }
       }
     }
@@ -68,7 +84,7 @@ export function getAnnotations(results: TestRunResult[], maxCount: number): Anno
   // Limit number of created annotations
   errors.splice(maxCount + 1)
 
-  const annotations = errors.map(e => {
+  const failureAnnotations = errors.map(e => {
     const message = [
       'Failed test found in:',
       e.testRunPaths.map(p => `  ${p}`).join('\n'),
@@ -87,7 +103,25 @@ export function getAnnotations(results: TestRunResult[], maxCount: number): Anno
     })
   })
 
-  return annotations
+  const noticeAnnotations = notices.map(n => {
+    const titleSuffix = n.description ? `: ${n.description}` : ''
+    const messageParts = []
+    if (n.description) {
+      messageParts.push(n.description)
+    }
+    messageParts.push(fixEol(n.systemOut))
+
+    return enforceCheckRunLimits({
+      path: n.path,
+      start_line: 0,
+      end_line: 0,
+      annotation_level: 'notice',
+      title: `${n.suiteName} ► ${n.testName}${titleSuffix}`,
+      message: messageParts.join('\n')
+    })
+  })
+
+  return [...failureAnnotations, ...noticeAnnotations]
 }
 
 function enforceCheckRunLimits(err: Annotation): Annotation {
