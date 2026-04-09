@@ -377,6 +377,24 @@ class TestReporter {
             core.info('Summary content:');
             core.info(summary);
             await core.summary.addRaw(summary).write();
+            const annotations = (0, get_annotations_1.getAnnotations)(results, this.maxAnnotations);
+            for (const ann of annotations) {
+                const props = {
+                    title: ann.title,
+                    file: ann.path,
+                    startLine: ann.start_line || 1,
+                    endLine: ann.end_line || 1
+                };
+                if (ann.annotation_level === 'failure') {
+                    core.error(ann.message, props);
+                }
+                else if (ann.annotation_level === 'warning') {
+                    core.warning(ann.message, props);
+                }
+                else {
+                    core.notice(ann.message, props);
+                }
+            }
         }
         else {
             core.info(`Creating check run ${name}`);
@@ -418,6 +436,7 @@ class TestReporter {
             core.info(`Check run HTML: ${resp.data.html_url}`);
             core.setOutput('url', resp.data.url);
             core.setOutput('url_html', resp.data.html_url);
+            await core.summary.addRaw(`\n[View test report: ${name}](${resp.data.html_url})\n`).write();
         }
         return results;
     }
@@ -2093,6 +2112,9 @@ function getTestsReport(ts, runIndex, suiteIndex, options) {
         for (const tc of grp.tests) {
             const result = getResultIcon(tc.result);
             sections.push(`${space}${result} ${tc.name}`);
+            if (tc.description) {
+                sections.push(`${space}   >> ${tc.description}`);
+            }
             if (tc.error) {
                 const lines = (tc.error.message ?? (0, parse_utils_1.getFirstNonEmptyLine)(tc.error.details)?.trim())
                     ?.split(/\r?\n/g)

@@ -236,6 +236,7 @@ class TestReporter {
       core.info(`Check run HTML: ${resp.data.html_url}`)
       core.setOutput('url', resp.data.url)
       core.setOutput('url_html', resp.data.html_url)
+      await core.summary.addRaw(`\n[View test report: ${name}](${resp.data.html_url})\n`).write()
     }
 
     return results
