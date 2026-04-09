@@ -56,7 +56,7 @@ inputs:
       Limits number of created annotations with error message and stack trace captured during test execution.
       Must be less or equal to 50.
     required: false
-    default: '10'
+    default: '50'
   fail-on-error:
     description: Set this action as failed if test report contain any failed test
     required: false
