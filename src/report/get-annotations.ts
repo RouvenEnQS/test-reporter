@@ -22,6 +22,7 @@ interface TestError {
   line: number
   message: string
   details: string
+  systemOut?: string
 }
 
 interface TestNotice {
@@ -65,7 +66,8 @@ export function getAnnotations(results: TestRunResult[], maxCount: number): Anno
               details: err.details,
               message: err.message ?? getFirstNonEmptyLine(err.details) ?? 'Test failed',
               path,
-              line
+              line,
+              systemOut: tc.systemOut
             })
           } else if (tc.result === 'success' && tc.systemOut) {
             notices.push({
@@ -85,12 +87,16 @@ export function getAnnotations(results: TestRunResult[], maxCount: number): Anno
   errors.splice(maxCount + 1)
 
   const failureAnnotations = errors.map(e => {
-    const message = [
+    const parts = [
       'Failed test found in:',
       e.testRunPaths.map(p => `  ${p}`).join('\n'),
       'Error:',
       ident(fixEol(e.message), '  ')
-    ].join('\n')
+    ]
+    if (e.systemOut) {
+      parts.push('Response:', ident(fixEol(e.systemOut), '  '))
+    }
+    const message = parts.join('\n')
 
     return enforceCheckRunLimits({
       path: e.path,

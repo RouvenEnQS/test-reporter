@@ -436,7 +436,31 @@ class TestReporter {
             core.info(`Check run HTML: ${resp.data.html_url}`);
             core.setOutput('url', resp.data.url);
             core.setOutput('url_html', resp.data.html_url);
-            await core.summary.addRaw(`\n[View test report: ${name}](${resp.data.html_url})\n`).write();
+            // Write compact pass/fail tables + link to the job summary
+            const tableSummary = (0, get_report_1.getReport)(results, {
+                listSuites,
+                listTests: 'none',
+                baseUrl,
+                onlySummary: true,
+                useActionsSummary: false,
+                badgeTitle
+            });
+            await core.summary
+                .addRaw(tableSummary)
+                .addRaw(`\n[View full test report: ${name}](${resp.data.html_url})\n`)
+                .write();
+            // Notice annotations are silently dropped by the Checks API when the path is not a
+            // tracked repo file. Emit them as workflow annotations so they always appear.
+            for (const ann of annotations) {
+                if (ann.annotation_level === 'notice') {
+                    core.notice(ann.message, {
+                        title: ann.title,
+                        file: ann.path,
+                        startLine: ann.start_line || 1,
+                        endLine: ann.end_line || 1
+                    });
+                }
+            }
         }
         return results;
     }
@@ -1811,7 +1835,8 @@ function getAnnotations(results, maxCount) {
                             details: err.details,
                             message: err.message ?? (0, parse_utils_1.getFirstNonEmptyLine)(err.details) ?? 'Test failed',
                             path,
-                            line
+                            line,
+                            systemOut: tc.systemOut
                         });
                     }
                     else if (tc.result === 'success' && tc.systemOut) {
@@ -1830,12 +1855,16 @@ function getAnnotations(results, maxCount) {
     // Limit number of created annotations
     errors.splice(maxCount + 1);
     const failureAnnotations = errors.map(e => {
-        const message = [
+        const parts = [
             'Failed test found in:',
             e.testRunPaths.map(p => `  ${p}`).join('\n'),
             'Error:',
             ident((0, markdown_utils_1.fixEol)(e.message), '  ')
-        ].join('\n');
+        ];
+        if (e.systemOut) {
+            parts.push('Response:', ident((0, markdown_utils_1.fixEol)(e.systemOut), '  '));
+        }
+        const message = parts.join('\n');
         return enforceCheckRunLimits({
             path: e.path,
             start_line: e.line,

@@ -236,7 +236,33 @@ class TestReporter {
       core.info(`Check run HTML: ${resp.data.html_url}`)
       core.setOutput('url', resp.data.url)
       core.setOutput('url_html', resp.data.html_url)
-      await core.summary.addRaw(`\n[View test report: ${name}](${resp.data.html_url})\n`).write()
+
+      // Write compact pass/fail tables + link to the job summary
+      const tableSummary = getReport(results, {
+        listSuites,
+        listTests: 'none',
+        baseUrl,
+        onlySummary: true,
+        useActionsSummary: false,
+        badgeTitle
+      })
+      await core.summary
+        .addRaw(tableSummary)
+        .addRaw(`\n[View full test report: ${name}](${resp.data.html_url})\n`)
+        .write()
+
+      // Notice annotations are silently dropped by the Checks API when the path is not a
+      // tracked repo file. Emit them as workflow annotations so they always appear.
+      for (const ann of annotations) {
+        if (ann.annotation_level === 'notice') {
+          core.notice(ann.message, {
+            title: ann.title,
+            file: ann.path,
+            startLine: ann.start_line || 1,
+            endLine: ann.end_line || 1
+          })
+        }
+      }
     }
 
     return results
