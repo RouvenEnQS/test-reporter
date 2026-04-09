@@ -1264,7 +1264,9 @@ class JavaJunitParser {
                 const result = this.getTestCaseResult(tc);
                 const time = parseFloat(tc.$.time) * 1000;
                 const error = this.getTestCaseError(tc);
-                return new test_results_1.TestCaseResult(name, result, time, error);
+                const description = tc.$.description;
+                const systemOut = tc['system-out']?.[0];
+                return new test_results_1.TestCaseResult(name, result, time, error, description, systemOut);
             });
             return new test_results_1.TestGroupResult(grp.name, tests);
         });
@@ -1766,40 +1768,49 @@ function getAnnotations(results, maxCount) {
     // Collect errors from TestRunResults
     // Merge duplicates if there are more test results files processed
     const errors = [];
+    const notices = [];
     const mergeDup = results.length > 1;
     for (const tr of results) {
         for (const ts of tr.suites) {
             for (const tg of ts.groups) {
                 for (const tc of tg.tests) {
                     const err = tc.error;
-                    if (err === undefined) {
-                        continue;
-                    }
-                    const path = err.path ?? tr.path;
-                    const line = err.line ?? 0;
-                    if (mergeDup) {
-                        const dup = errors.find(e => path === e.path && line === e.line && err.details === e.details);
-                        if (dup !== undefined) {
-                            dup.testRunPaths.push(tr.path);
-                            continue;
+                    if (err !== undefined) {
+                        const path = err.path ?? tr.path;
+                        const line = err.line ?? 0;
+                        if (mergeDup) {
+                            const dup = errors.find(e => path === e.path && line === e.line && err.details === e.details);
+                            if (dup !== undefined) {
+                                dup.testRunPaths.push(tr.path);
+                                continue;
+                            }
                         }
+                        errors.push({
+                            testRunPaths: [tr.path],
+                            suiteName: ts.name,
+                            testName: tg.name ? `${tg.name} ► ${tc.name}` : tc.name,
+                            details: err.details,
+                            message: err.message ?? (0, parse_utils_1.getFirstNonEmptyLine)(err.details) ?? 'Test failed',
+                            path,
+                            line
+                        });
                     }
-                    errors.push({
-                        testRunPaths: [tr.path],
-                        suiteName: ts.name,
-                        testName: tg.name ? `${tg.name} ► ${tc.name}` : tc.name,
-                        details: err.details,
-                        message: err.message ?? (0, parse_utils_1.getFirstNonEmptyLine)(err.details) ?? 'Test failed',
-                        path,
-                        line
-                    });
+                    else if (tc.result === 'success' && tc.systemOut) {
+                        notices.push({
+                            suiteName: ts.name,
+                            testName: tg.name ? `${tg.name} ► ${tc.name}` : tc.name,
+                            path: tr.path,
+                            description: tc.description,
+                            systemOut: tc.systemOut
+                        });
+                    }
                 }
             }
         }
     }
     // Limit number of created annotations
     errors.splice(maxCount + 1);
-    const annotations = errors.map(e => {
+    const failureAnnotations = errors.map(e => {
         const message = [
             'Failed test found in:',
             e.testRunPaths.map(p => `  ${p}`).join('\n'),
@@ -1816,7 +1827,23 @@ function getAnnotations(results, maxCount) {
             message
         });
     });
-    return annotations;
+    const noticeAnnotations = notices.map(n => {
+        const titleSuffix = n.description ? `: ${n.description}` : '';
+        const messageParts = [];
+        if (n.description) {
+            messageParts.push(n.description);
+        }
+        messageParts.push((0, markdown_utils_1.fixEol)(n.systemOut));
+        return enforceCheckRunLimits({
+            path: n.path,
+            start_line: 1,
+            end_line: 1,
+            annotation_level: 'notice',
+            title: `${n.suiteName} ► ${n.testName}${titleSuffix}`,
+            message: messageParts.join('\n')
+        });
+    });
+    return [...failureAnnotations, ...noticeAnnotations];
 }
 function enforceCheckRunLimits(err) {
     err.title = (0, markdown_utils_1.ellipsis)(err.title || '', 255);
@@ -2226,11 +2253,15 @@ class TestCaseResult {
     result;
     time;
     error;
-    constructor(name, result, time, error) {
+    description;
+    systemOut;
+    constructor(name, result, time, error, description, systemOut) {
         this.name = name;
         this.result = result;
         this.time = time;
         this.error = error;
+        this.description = description;
+        this.systemOut = systemOut;
     }
 }
 exports.TestCaseResult = TestCaseResult;

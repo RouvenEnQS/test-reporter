@@ -113,8 +113,8 @@ export function getAnnotations(results: TestRunResult[], maxCount: number): Anno
 
     return enforceCheckRunLimits({
       path: n.path,
-      start_line: 0,
-      end_line: 0,
+      start_line: 1,
+      end_line: 1,
       annotation_level: 'notice',
       title: `${n.suiteName} ► ${n.testName}${titleSuffix}`,
       message: messageParts.join('\n')
