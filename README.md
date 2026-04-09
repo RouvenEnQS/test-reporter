@@ -9,19 +9,15 @@ This [Github Action](https://github.com/features/actions) displays test results 
 ✔️ Provides final `conclusion` and counts of `passed`, `failed` and `skipped` tests as output parameters
 
 **How it looks:**
-|![Summary showing test run with all tests passed, including details such as test file names, number of passed, failed, and skipped tests, and execution times. The interface is dark-themed and displays a green badge indicating 3527 passed and 4 skipped tests.](assets/fluent-validation-report.png)|![Summary showing test run with a failed unit test. The summary uses a dark background and highlights errors in red for quick identification.](assets/provider-error-summary.png)|![GitHub Actions annotation showing details of a failed unit test with a detailed error message, stack trace, and code annotation.](assets/provider-error-details.png)|![Test cases written in Mocha framework with a list of expectations for each test case. The table format and color-coded badges help users quickly assess test suite health.](assets/mocha-groups.png)|
+|![](assets/fluent-validation-report.png)|![](assets/provider-error-summary.png)|![](assets/provider-error-details.png)|![](assets/mocha-groups.png)|
 |:--:|:--:|:--:|:--:|
 
 **Supported languages / frameworks:**
 - .NET / [dotnet test](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test#examples) ( [xUnit](https://xunit.net/) / [NUnit](https://nunit.org/) / [MSTest](https://github.com/Microsoft/testfx-docs) )
 - Dart / [test](https://pub.dev/packages/test)
 - Flutter / [test](https://pub.dev/packages/test)
-- Go / [go test](https://pkg.go.dev/testing)
 - Java / [JUnit](https://junit.org/)
 - JavaScript / [JEST](https://jestjs.io/) / [Mocha](https://mochajs.org/)
-- Python / [pytest](https://docs.pytest.org/en/stable/) / [unittest](https://docs.python.org/3/library/unittest.html)
-- PHP / [PHPUnit](https://phpunit.de/) / [Nette Tester](https://tester.nette.org/)
-- Ruby / [RSpec](https://rspec.info/)
 - Swift / xUnit
 
 For more information see [Supported formats](#supported-formats) section.
@@ -52,8 +48,8 @@ jobs:
       - run: npm test                 # run tests (configured to use jest-junit reporter)
 
       - name: Test Report
-        uses: dorny/test-reporter@v3
-        if: ${{ !cancelled() }}       # run this step even if previous step failed
+        uses: dorny/test-reporter@v1
+        if: success() || failure()    # run this step even if previous step failed
         with:
           name: JEST Tests            # Name of the check run which will be created
           path: reports/jest-*.xml    # Path to test results
@@ -82,7 +78,7 @@ jobs:
       - run: npm ci                       # install packages
       - run: npm test                     # run tests (configured to use jest-junit reporter)
       - uses: actions/upload-artifact@v4  # upload test results
-        if: ${{ !cancelled() }}           # run this step even if previous step failed
+        if: success() || failure()        # run this step even if previous step failed
         with:
           name: test-results
           path: jest-junit.xml
@@ -103,7 +99,7 @@ jobs:
   report:
     runs-on: ubuntu-latest
     steps:
-    - uses: dorny/test-reporter@v3
+    - uses: dorny/test-reporter@v1
       with:
         artifact: test-results            # artifact name
         name: JEST Tests                  # Name of the check run which will be created
@@ -114,7 +110,7 @@ jobs:
 ## Usage
 
 ```yaml
-- uses: dorny/test-reporter@v3
+- uses: dorny/test-reporter@v1
   with:
 
     # Name or regex of artifact containing test results
@@ -144,14 +140,10 @@ jobs:
     #   dotnet-nunit
     #   dotnet-trx
     #   flutter-json
-    #   golang-json
     #   java-junit
     #   jest-junit
     #   mocha-json
-    #   phpunit-junit
-    #   python-xunit
     #   rspec-json
-    #   swift-xunit
     reporter: ''
 
     # Allows you to generate only the summary.
@@ -162,11 +154,6 @@ jobs:
     # Allows you to generate reports for Actions Summary
     # https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/
     use-actions-summary: 'true'
-    
-    # Optionally specify a title (Heading level 1) for the report. Leading and trailing whitespace are ignored.
-    # This is useful for separating your test report from other sections in the build summary.
-    # If omitted or set to whitespace/empty, no title will be printed.
-    report-title: ''
 
     # Customize the title of badges shown for each Actions Summary.
     # Useful when distinguish summaries for tests ran in multiple Actions steps.
@@ -194,13 +181,6 @@ jobs:
     # Set this action as failed if no test results were found
     fail-on-empty: 'true'
 
-    # Controls whether test report details are collapsed or expanded.
-    # Supported options:
-    #   auto: Collapse only if all tests pass (default behavior)
-    #   always: Always collapse the report details
-    #   never: Always expand the report details
-    collapsed: 'auto'
-
     # Relative path under $GITHUB_WORKSPACE where the repository was checked out.
     working-directory: ''
 
@@ -219,7 +199,6 @@ jobs:
 | time       | Test execution time [ms] |
 | url        | Check run URL            |
 | url_html   | Check run URL HTML       |
-| slug_prefix| Random anchor links slug prefix generated for the summary headers |
 
 ## Supported formats
 
@@ -268,20 +247,6 @@ For more information see [dotnet test](https://docs.microsoft.com/en-us/dotnet/c
 </details>
 
 <details>
-  <summary>dotnet-nunit</summary>
-
-Test execution must be configured to generate [NUnit3](https://docs.nunit.org/articles/nunit/technical-notes/usage/Test-Result-XML-Format.html) XML test results.
-Install the [NUnit3TestAdapter](https://www.nuget.org/packages/NUnit3TestAdapter) package (required; it registers the `nunit` logger for `dotnet test`), then run tests with:
-
-`dotnet test --logger "nunit;LogFileName=test-results.xml"`
-
-Supported testing frameworks:
-- [NUnit](https://nunit.org/)
-
-For more information see [dotnet test](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test#examples)
-</details>
-
-<details>
   <summary>flutter-json</summary>
 
 Test run must be configured to use [JSON](https://github.com/dart-lang/test/blob/master/pkgs/test/doc/configuration.md#reporter) reporter.
@@ -309,40 +274,12 @@ For more information see:
 </details>
 
 <details>
-  <summary>golang-json</summary>
-
-You must use the `-json` flag and output the results to a file (ex: `go test -json > testresults.json`)
-
-</details>
-
-<details>
   <summary>java-junit (Experimental)</summary>
 
 Support for [JUnit](https://Junit.org/) XML is experimental - should work but it was not extensively tested.
 To have code annotations working properly, it's required your directory structure matches the package name.
 This is due to the fact Java stack traces don't contain a full path to the source file.
 Some heuristic was necessary to figure out the mapping between the line in the stack trace and an actual source file.
-</details>
-
-<details>
-  <summary>phpunit-junit</summary>
-
-[PHPUnit](https://phpunit.de/) can generate JUnit XML via CLI:
-`phpunit --log-junit reports/phpunit-junit.xml`
-
-</details>
-
-<details>
-  <summary>tester-junit</summary>
-
-[Nette Tester](https://tester.nette.org/) can generate JUnit XML via CLI:
-
-```bash
-tester -s -o junit tests/ > reports/tester-junit.xml
-```
-
-**Note:** Nette Tester's JUnit output doesn't include test suite names. The parser will use the report file name as the suite name and automatically group tests by directory structure.
-
 </details>
 
 <details>
@@ -399,41 +336,6 @@ Please update Mocha to version [v9.1.0](https://github.com/mochajs/mocha/release
 </details>
 
 <details>
-  <summary>python-xunit (Experimental)</summary>
-
-Support for Python test results in xUnit format is experimental - should work but it was not extensively tested.
-
-For **pytest** support, configure [JUnit XML output](https://docs.pytest.org/en/stable/how-to/output.html#creating-junitxml-format-files) and run with the `--junit-xml` option, which also lets you specify the output path for test results.
-
-```shell
-pytest --junit-xml=test-report.xml
-```
-
-For **unittest** support, use a test runner that outputs the JUnit report format, such as [unittest-xml-reporting](https://pypi.org/project/unittest-xml-reporting/).
-</details>
-
-<details>
-  <summary>rspec-json</summary>
-
-[RSpec](https://rspec.info/) testing framework support requires the usage of JSON formatter.
-You can configure RSpec to output JSON format by using the `--format json` option and redirecting to a file:
-
-```shell
-rspec --format json --out rspec-results.json
-```
-
-Or configure it in `.rspec` file:
-```
---format json
---out rspec-results.json
-```
-
-For more information see:
-- [RSpec documentation](https://rspec.info/)
-- [RSpec Formatters](https://relishapp.com/rspec/rspec-core/docs/formatters)
-</details>
-
-<details>
   <summary>swift-xunit (Experimental)</summary>
 
 Support for Swift test results in xUnit format is experimental - should work but it was not extensively tested.
@@ -443,7 +345,7 @@ Support for Swift test results in xUnit format is experimental - should work but
 
 Unfortunately, there are some known issues and limitations caused by GitHub API:
 
-- Test report (i.e. build summary) is Markdown text. No custom styling or HTML is possible.
+- Test report (i.e. Check Run summary) is markdown text. No custom styling or HTML is possible.
 - Maximum report size is 65535 bytes. Input parameters `list-suites` and `list-tests` will be automatically adjusted if max size is exceeded.
 - Test report can't reference any additional files (e.g. screenshots). You can use `actions/upload-artifact@v4` to upload them and inspect them manually.
 - Check Runs are created for specific commit SHA. It's not possible to specify under which workflow test report should belong if more

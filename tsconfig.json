@@ -1,14 +1,13 @@
 {
   "compilerOptions": {
     "lib": ["es2023"],
-    "module": "nodenext",
+    "module": "node16",
     "target": "es2022",
 
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "moduleResolution": "nodenext",
-    "isolatedModules": true,
+    "moduleResolution": "node16",
 
     "outDir": "./lib",
     "rootDir": "./src",

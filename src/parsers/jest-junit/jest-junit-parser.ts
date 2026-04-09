@@ -1,9 +1,9 @@
-import {ParseOptions, TestParser} from '../../test-parser.js'
+import {ParseOptions, TestParser} from '../../test-parser'
 import {parseStringPromise} from 'xml2js'
 
-import {JunitReport, TestCase, TestSuite} from './jest-junit-types.js'
-import {getExceptionSource} from '../../utils/node-utils.js'
-import {getBasePath, normalizeFilePath} from '../../utils/path-utils.js'
+import {JunitReport, TestCase, TestSuite} from './jest-junit-types'
+import {getExceptionSource} from '../../utils/node-utils'
+import {getBasePath, normalizeFilePath} from '../../utils/path-utils'
 
 import {
   TestExecutionResult,
@@ -12,7 +12,7 @@ import {
   TestGroupResult,
   TestCaseResult,
   TestCaseError
-} from '../../test-results.js'
+} from '../../test-results'
 
 export class JestJunitParser implements TestParser {
   assumedWorkDir: string | undefined
@@ -75,18 +75,17 @@ export class JestJunitParser implements TestParser {
   }
 
   private getTestCaseResult(test: TestCase): TestExecutionResult {
-    if (test.failure || test.error) return 'failed'
+    if (test.failure) return 'failed'
     if (test.skipped) return 'skipped'
     return 'success'
   }
 
   private getTestCaseError(tc: TestCase): TestCaseError | undefined {
-    if (!this.options.parseErrors || !(tc.failure || tc.error)) {
+    if (!this.options.parseErrors || !tc.failure) {
       return undefined
     }
 
-    const message = tc.failure ? tc.failure[0] : tc.error ? tc.error[0] : 'unknown failure'
-    const details = typeof message === 'string' ? message : message['_']
+    const details = tc.failure[0]
     let path
     let line
 
@@ -107,7 +106,7 @@ export class JestJunitParser implements TestParser {
     path = normalizeFilePath(path)
     const workDir = this.getWorkDir(path)
     if (workDir !== undefined && path.startsWith(workDir)) {
-      path = path.substring(workDir.length)
+      path = path.substr(workDir.length)
     }
     return path
   }

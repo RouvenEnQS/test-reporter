@@ -5,13 +5,8 @@ import {GitHub} from '@actions/github/lib/utils'
 import Zip from 'adm-zip'
 import picomatch from 'picomatch'
 
-import {FileContent, InputProvider, ReportInput} from './input-provider.js'
-import {downloadArtifact, listFiles} from '../utils/github-utils.js'
-
-type WorkflowRunArtifact = {
-  id: number
-  name: string
-}
+import {FileContent, InputProvider, ReportInput} from './input-provider'
+import {downloadArtifact, listFiles} from '../utils/github-utils'
 
 export class ArtifactProvider implements InputProvider {
   private readonly artifactNameMatch: (name: string) => boolean
@@ -55,17 +50,17 @@ export class ArtifactProvider implements InputProvider {
   async load(): Promise<ReportInput> {
     const result: ReportInput = {}
 
-    const allArtifacts = (await this.octokit.paginate(this.octokit.rest.actions.listWorkflowRunArtifacts, {
+    const resp = await this.octokit.rest.actions.listWorkflowRunArtifacts({
       ...github.context.repo,
       run_id: this.runId
-    })) as WorkflowRunArtifact[]
+    })
 
-    if (allArtifacts.length === 0) {
+    if (resp.data.artifacts.length === 0) {
       core.warning(`No artifacts found in run ${this.runId}`)
       return {}
     }
 
-    const artifacts = allArtifacts.filter(a => this.artifactNameMatch(a.name))
+    const artifacts = resp.data.artifacts.filter(a => this.artifactNameMatch(a.name))
     if (artifacts.length === 0) {
       core.warning(`No artifact matches ${this.artifact}`)
       return {}

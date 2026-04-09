@@ -1,4 +1,4 @@
-import {parseStackTraceElement} from '../src/parsers/java-junit/java-stack-trace-element-parser.js'
+import {parseStackTraceElement} from '../src/parsers/java-junit/java-stack-trace-element-parser'
 
 describe('parseStackTraceLine tests', () => {
   it('empty line is not parsed', async () => {

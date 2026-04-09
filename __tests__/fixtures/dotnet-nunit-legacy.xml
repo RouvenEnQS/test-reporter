@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Users\james_t\Documents\git\test-reporter\reports\dotnet-nunit-legacy\NUnitLegacy.sln" total="9" errors="2" failures="3" not-run="1" inconclusive="1" ignored="1" skipped="0" invalid="0" date="2025-03-05" time="09:42:55">
+  <environment nunit-version="2.6.1.12217" clr-version="2.0.50727.9179" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\Users\james_t\Documents\git\test-reporter" machine-name="CTXSHAMUS" user="james_t" user-domain="LABATTSA" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Project" name="C:\Users\james_t\Documents\git\test-reporter\reports\dotnet-nunit-legacy\NUnitLegacy.sln" executed="True" result="Failure" success="False" time="0.120" asserts="0">
+    <results>
+      <test-suite type="Assembly" name="C:\Users\james_t\Documents\git\test-reporter\reports\dotnet-nunit-legacy\NUnitLegacyTests\bin\Debug\NUnitLegacyTests.dll" executed="True" result="Failure" success="False" time="0.105" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="NUnitLegacyTests" executed="True" result="Failure" success="False" time="0.105" asserts="0">
+            <results>
+              <test-suite type="TestFixture" name="CalculatorTests" executed="True" result="Failure" success="False" time="0.104" asserts="0">
+                <results>
+                  <test-case name="NUnitLegacyTests.CalculatorTests.Exception_In_TargetTest" executed="True" result="Error" success="False" time="0.026" asserts="0">
+                    <failure>
+                      <message><![CDATA[System.DivideByZeroException : Attempted to divide by zero.]]></message>
+                      <stack-trace><![CDATA[at MyLibrary.Calculator.Div(Int32 a, Int32 b) in C:\Users\james_t\source\repos\NUnitLegacy\MyLibrary\Calculator.cs:line 7
+at NUnitLegacyTests.CalculatorTests.Exception_In_TargetTest() in C:\Users\james_t\source\repos\NUnitLegacy\NUnitLegacyTests\CalculatorTests.cs:line 33
+]]></stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case name="NUnitLegacyTests.CalculatorTests.Exception_In_Test" executed="True" result="Error" success="False" time="0.002" asserts="0">
+                    <failure>
+                      <message><![CDATA[System.Exception : Test]]></message>
+                      <stack-trace><![CDATA[at NUnitLegacyTests.CalculatorTests.Exception_In_Test() in C:\Users\james_t\source\repos\NUnitLegacy\NUnitLegacyTests\CalculatorTests.cs:line 39
+]]></stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case name="NUnitLegacyTests.CalculatorTests.Failing_Test" executed="True" result="Failure" success="False" time="0.014" asserts="1">
+                    <failure>
+                      <message><![CDATA[  Expected: 3
+  But was:  2
+]]></message>
+                      <stack-trace><![CDATA[at NUnitLegacyTests.CalculatorTests.Failing_Test() in C:\Users\james_t\source\repos\NUnitLegacy\NUnitLegacyTests\CalculatorTests.cs:line 27
+]]></stack-trace>
+                    </failure>
+                  </test-case>
+                  <test-case name="NUnitLegacyTests.CalculatorTests.Inconclusive_Test" executed="True" result="Inconclusive" success="False" time="0.001" asserts="0">
+                    <reason>
+                      <message><![CDATA[couldn't run test for some reason]]></message>
+                    </reason>
+                  </test-case>
+                  <test-suite type="Theory" name="Is_Even_Number" executed="True" result="Failure" success="False" time="0.004" asserts="0">
+                    <results>
+                      <test-case name="NUnitLegacyTests.CalculatorTests.Is_Even_Number(2)" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                      <test-case name="NUnitLegacyTests.CalculatorTests.Is_Even_Number(3)" executed="True" result="Failure" success="False" time="0.001" asserts="1">
+                        <failure>
+                          <message><![CDATA[  Expected: True
+  But was:  False
+]]></message>
+                          <stack-trace><![CDATA[at NUnitLegacyTests.CalculatorTests.Is_Even_Number(Int32 i) in C:\Users\james_t\source\repos\NUnitLegacy\NUnitLegacyTests\CalculatorTests.cs:line 61
+]]></stack-trace>
+                        </failure>
+                      </test-case>
+                    </results>
+                  </test-suite>
+                  <test-case name="NUnitLegacyTests.CalculatorTests.Passing_Test" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="NUnitLegacyTests.CalculatorTests.Passing_Test_With_Description" description="Some description" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="NUnitLegacyTests.CalculatorTests.Skipped_Test" executed="False" result="Ignored">
+                    <reason>
+                      <message><![CDATA[Skipped]]></message>
+                    </reason>
+                  </test-case>
+                  <test-case name="NUnitLegacyTests.CalculatorTests.Timeout_Test" executed="True" result="Failure" success="False" time="0.028" asserts="0">
+                    <properties>
+                      <property name="Timeout" value="1" />
+                    </properties>
+                    <failure>
+                      <message><![CDATA[Test exceeded Timeout value of 1ms]]></message>
+                      <stack-trace />
+                    </failure>
+                  </test-case>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="Assembly" name="C:\Users\james_t\Documents\git\test-reporter\reports\dotnet-nunit-legacy\MyLibrary\bin\Debug\MyLibrary.dll" executed="True" result="Inconclusive" success="False" time="0.000" asserts="0" />
+    </results>
+  </test-suite>
+</test-results>

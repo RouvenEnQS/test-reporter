@@ -1,4 +1,4 @@
-import {DEFAULT_LOCALE} from './utils/node-utils.js'
+import {DEFAULT_LOCALE} from './utils/node-utils'
 
 export class TestRunResult {
   constructor(
@@ -122,9 +122,7 @@ export class TestCaseResult {
     readonly name: string,
     readonly result: TestExecutionResult,
     readonly time: number,
-    readonly error?: TestCaseError,
-    readonly description?: string,
-    readonly systemOut?: string
+    readonly error?: TestCaseError
   ) {}
 }
 

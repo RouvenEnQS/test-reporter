@@ -32,12 +32,10 @@ export interface TestCase {
     file?: string
     name: string
     time: string
-    description?: string
   }
   failure?: string | Failure[]
   error?: string | Failure[]
   skipped?: string[]
-  'system-out'?: string[]
 }
 
 export interface Failure {

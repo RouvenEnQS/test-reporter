@@ -31,5 +31,4 @@ export interface TestCase {
   }
   failure?: string[]
   skipped?: string[]
-  error?: string[]
 }

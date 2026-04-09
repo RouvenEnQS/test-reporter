@@ -1,4 +1,4 @@
-import {parseNetDuration} from '../../src/utils/parse-utils.js'
+import {parseNetDuration} from '../../src/utils/parse-utils'
 
 describe('parseNetDuration', () => {
   it('returns 0 for 00:00:00', () => {
@@ -32,6 +32,6 @@ describe('parseNetDuration', () => {
   })
 
   it('throws when string has invalid format', () => {
-    expect(() => parseNetDuration('12:34:56 not a duration')).toThrow(/^Invalid format/)
+    expect(() => parseNetDuration('12:34:56 not a duration')).toThrowError(/^Invalid format/)
   })
 })

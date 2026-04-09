@@ -1,5 +1,6 @@
 name: Test Reporter
-description: Displays test results from popular testing frameworks directly in GitHub
+description: |
+  Shows test results in GitHub UI: .NET (xUnit, NUnit, MSTest), Dart, Flutter, Java (JUnit), JavaScript (JEST, Mocha)
 author: Michal Dorner <dorner.michal@gmail.com>
 inputs:
   artifact:
@@ -28,13 +29,9 @@ inputs:
         - dotnet-nunit
         - dotnet-trx
         - flutter-json
-        - golang-json
         - java-junit
         - jest-junit
         - mocha-json
-        - tester-junit
-        - phpunit-junit
-        - python-xunit
         - rspec-json
         - swift-xunit
     required: true
@@ -42,7 +39,7 @@ inputs:
     description: |
       Limits which test suites are listed. Supported options:
         - all
-        - failed
+        - only-failed
         - none
     required: false
     default: 'all'
@@ -50,7 +47,7 @@ inputs:
     description: |
       Limits which test cases are listed. Supported options:
         - all
-        - failed
+        - only-failed
         - none
     required: false
     default: 'all'
@@ -71,10 +68,6 @@ inputs:
   working-directory:
     description: Relative path under $GITHUB_WORKSPACE where the repository was checked out
     required: false
-  report-title:
-    description: Title for the test report summary
-    required: false
-    default: ''
   only-summary:
     description: |
       Allows you to generate only the summary.
@@ -92,14 +85,6 @@ inputs:
     description: Customize badge title
     required: false
     default: 'tests'
-  collapsed:
-    description: |
-      Controls whether test report details are collapsed or expanded. Supported options:
-        - auto: Collapse only if all tests pass (default behavior)
-        - always: Always collapse the report details
-        - never: Always expand the report details
-    required: false
-    default: 'auto'
   token:
     description: GitHub Access Token
     required: false
@@ -122,10 +107,8 @@ outputs:
     description: Check run URL
   url_html:
     description: Check run URL HTML
-  slug_prefix:
-    description: Random prefix added to generated report anchor slugs for this action run
 runs:
-  using: 'node24'
+  using: 'node20'
   main: 'dist/index.js'
 branding:
   color: blue

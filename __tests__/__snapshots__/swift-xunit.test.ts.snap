@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`swift-xunit tests report from swift test results matches snapshot 1`] = `
 TestRunResult {
@@ -10,23 +10,18 @@ TestRunResult {
           "name": "AcmeLibTests.AcmeLibTests",
           "tests": [
             TestCaseResult {
-              "description": undefined,
               "error": undefined,
               "name": "test_always_pass",
               "result": "success",
-              "systemOut": undefined,
               "time": 36.386333,
             },
             TestCaseResult {
-              "description": undefined,
               "error": undefined,
               "name": "test_always_skip",
               "result": "success",
-              "systemOut": undefined,
               "time": 92.039167,
             },
             TestCaseResult {
-              "description": undefined,
               "error": {
                 "details": undefined,
                 "line": undefined,
@@ -35,7 +30,6 @@ TestRunResult {
               },
               "name": "test_always_fail",
               "result": "failed",
-              "systemOut": undefined,
               "time": 92.05175,
             },
           ],
