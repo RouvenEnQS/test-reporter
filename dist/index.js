@@ -2155,6 +2155,21 @@ function getTestsReport(ts, runIndex, suiteIndex, options) {
         }
     }
     sections.push('```');
+    // Render system-out response bodies outside the code block as collapsible sections
+    for (const grp of groups) {
+        for (const tc of grp.tests) {
+            if (tc.systemOut) {
+                const label = tc.description ? `${tc.name} — ${tc.description}` : tc.name;
+                sections.push(`<details><summary>${getResultIcon(tc.result)} ${label}</summary>`);
+                sections.push('');
+                sections.push('```');
+                sections.push(tc.systemOut.trim());
+                sections.push('```');
+                sections.push('');
+                sections.push('</details>');
+            }
+        }
+    }
     return sections;
 }
 function makeRunSlug(runIndex) {
