@@ -174,6 +174,23 @@ class TestReporter {
       core.info('Summary content:')
       core.info(summary)
       await core.summary.addRaw(summary).write()
+
+      const annotations = getAnnotations(results, this.maxAnnotations)
+      for (const ann of annotations) {
+        const props = {
+          title: ann.title,
+          file: ann.path,
+          startLine: ann.start_line || 1,
+          endLine: ann.end_line || 1
+        }
+        if (ann.annotation_level === 'failure') {
+          core.error(ann.message, props)
+        } else if (ann.annotation_level === 'warning') {
+          core.warning(ann.message, props)
+        } else {
+          core.notice(ann.message, props)
+        }
+      }
     } else {
       core.info(`Creating check run ${name}`)
       const createResp = await this.octokit.rest.checks.create({
